@@ -7,7 +7,7 @@ const RecipeSchema = new Schema({
     },
     category: {
         type: String,
-        enum: ["prato principal", "massas", "acompanhamentos", "drinks", "sobremesas"],
+        enum: ["prato principal", "massas", "acompanhamento", "drink", "sobremesa"],
         required: true
     },
     description: {
@@ -33,6 +33,7 @@ const RecipeSchema = new Schema({
         type: String,
         required: true
     },
+    //default: []
 
 });
 

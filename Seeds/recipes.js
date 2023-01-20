@@ -1,4 +1,8 @@
-const Recipe = require("../Models/Recipes.Models")
+const Recipe = require("../Models/Recipes.Models");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 const recipes = [
     {
@@ -503,14 +507,27 @@ const recipes = [
       "image": "https://t2.rg.ltmcdn.com/pt/posts/6/0/0/pave_de_bombom_sonho_de_valsa_10006_600.jpg"
     }
   ]
+  const connectionDb = async () => {
+    try {
+        mongoose.set('strictQuery', false);
+        const connection = await mongoose.connect(process.env.MONGODB_URI)
+        console.log("Connected to DB: ", connection.connections[0].name);
+    } catch (error) {
+        console.error("Database connection error: ", error);
+    }
+}
+
   const seedDb = async () => {
     try {
+      mongoose.set('strictQuery', false);
+        await mongoose.connect(process.env.MONGODB_URI)
+
         await Recipe.insertMany(recipes)
         console.log ("congrats")
     } catch (error) {
-        console.log ("can't seed")
+        console.log (error)
         
     }
   }
 
-  seedDb()
+  module.exports = seedDb
