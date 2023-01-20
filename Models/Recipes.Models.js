@@ -1,32 +1,39 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const RecipeSchema = new Schema({
-    title: {type: String, 
+    title: {
+        type: String,
         required: true
     },
-    category: {type: String, 
+    category: {
+        type: String,
         enum: ["prato principal", "massas", "acompanhamentos", "drinks", "sobremesas"],
         required: true
     },
-    description: {type: String,
+    description: {
+        type: String,
         required: true
     },
     preparation: [String],
     ingredients: [String],
-    time: {type: String,
+    time: {
+        type: String,
         required: true
     },
-    level: {type: String,
+    level: {
+        type: String,
         enum: ["easy", "moderate", "hard"],
         required: true
     },
-    rate: {type: Number,
+    rate: {
+        type: Number,
         required: true
     },
-    image: {type: String,
+    image: {
+        type: String,
         required: true
     },
 
-})
+});
 
-const RecipesModels = model("Recipes", RecipeSchema);
+module.exports = model("Recipe", RecipeSchema);
