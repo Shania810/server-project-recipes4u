@@ -6,7 +6,8 @@ const recipeRoutes = require('./Routes/recipes.routes.js');
 
 connectionDb();
 
-
+app.use(express.json())
 app.use('/', recipeRoutes);
+
 
 module.exports = app

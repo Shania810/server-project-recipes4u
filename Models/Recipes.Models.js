@@ -33,7 +33,7 @@ const RecipeSchema = new Schema({
         type: String,
         required: true
     },
-    //default: []
+    
 
 });
 
