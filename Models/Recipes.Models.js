@@ -27,7 +27,8 @@ const RecipeSchema = new Schema({
     },
     rate: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     image: {
         type: String,
