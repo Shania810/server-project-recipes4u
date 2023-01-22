@@ -6,7 +6,7 @@ const router = Router();
 router.get('/recipe/search', async (req, res) => {
     const { recipe } = req.body
     try {
-        const searchRecipe = await Recipe.find({ title: { $regex: recipe } })
+        const searchRecipe = await Recipe.find({ title: { $regex: recipe } }).populate('comments')
         res.status(200).json(searchRecipe)
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error' })
@@ -17,7 +17,7 @@ router.get('/recipe/search', async (req, res) => {
 router.get('/recipe/:idRecipe',async(req,res)=>{
     const {idRecipe} = req.params
     try {
-        const recipe = await Recipe.findById(idRecipe)
+        const recipe = await Recipe.findById(idRecipe).populate('comments')
        res.status(200).json(recipe)
     } catch (error) {
         res.status(500).json({message: 'Internal Server Error'})
