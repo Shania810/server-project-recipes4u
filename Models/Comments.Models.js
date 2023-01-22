@@ -9,6 +9,10 @@ const CommentSchema = new Schema({
         type: String,
         required: true
     },
+    rate: {
+        type: Number,
+        required: true
+    },
     recipe: {
         type: Schema.Types.ObjectId,
         ref: "Recipe",

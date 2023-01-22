@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const Comment = require('../Models/Comments.Models');
 const Recipe = require('../Models/Recipes.Models');
 const router = Router();
 
@@ -8,10 +9,20 @@ router.get('/recipe/search', async (req, res) => {
         const searchRecipe = await Recipe.find({ title: { $regex: recipe } })
         res.status(200).json(searchRecipe)
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: 'Internal Server Error' })
     }
 
 });
+
+router.get('/recipe/:idRecipe',async(req,res)=>{
+    const {idRecipe} = req.params
+    try {
+        const recipe = await Recipe.findById(idRecipe)
+       res.status(200).json(recipe)
+    } catch (error) {
+        res.status(500).json({message: 'Internal Server Error'})
+    }
+})
 
 router.post('/recipe',async(req,res)=>{
     const recipe = req.body
@@ -19,8 +30,21 @@ router.post('/recipe',async(req,res)=>{
         const newRecipe = await Recipe.create(recipe)
         res.status(200).json(newRecipe)
     } catch (error) {
-        res.status(500).json('Internal Server Error')
+        res.status(500).json({message:'Internal Server Error'})
     }
 });
+
+/*router.put('/recipe/:idRecipe',async(req,res)=>{
+    const {idRecipe} = req.params
+    try {
+        const commentsRecipe = await Comment.find({recipe: idRecipe})
+        const ratesRecipe = commentsRecipe.map(({rate})=>rate)
+        const averageRatesRecipe = Math.round(ratesRecipe.reduce((acc,cu)=> acc + cu,0) / ratesRecipe.length)
+        await Recipe.findByIdAndUpdate(idRecipe,{rate: averageRatesRecipe},{new: true})
+    } catch (error) {
+        res.status(500).json({message:'Internal Server Error'})
+    }
+});*/
+
 
 module.exports = router
