@@ -34,17 +34,4 @@ router.post('/recipe',async(req,res)=>{
     }
 });
 
-/*router.put('/recipe/:idRecipe',async(req,res)=>{
-    const {idRecipe} = req.params
-    try {
-        const commentsRecipe = await Comment.find({recipe: idRecipe})
-        const ratesRecipe = commentsRecipe.map(({rate})=>rate)
-        const averageRatesRecipe = Math.round(ratesRecipe.reduce((acc,cu)=> acc + cu,0) / ratesRecipe.length)
-        await Recipe.findByIdAndUpdate(idRecipe,{rate: averageRatesRecipe},{new: true})
-    } catch (error) {
-        res.status(500).json({message:'Internal Server Error'})
-    }
-});*/
-
-
 module.exports = router
