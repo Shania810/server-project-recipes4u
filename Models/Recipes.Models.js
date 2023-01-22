@@ -34,8 +34,11 @@ const RecipeSchema = new Schema({
         type: String,
         required: true
     },
-    
-
+    comments:[{
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+        required: true
+    }]
 });
 
 module.exports = model("Recipe", RecipeSchema);
