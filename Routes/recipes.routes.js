@@ -13,6 +13,14 @@ router.get('/recipe/search', async (req, res) => {
 
 });
 
-
+router.post('/recipe',async(req,res)=>{
+    const recipe = req.body
+    try {
+        const newRecipe = await Recipe.create(recipe)
+        res.status(200).json(newRecipe)
+    } catch (error) {
+        res.status(500).json('Internal Server Error')
+    }
+});
 
 module.exports = router
