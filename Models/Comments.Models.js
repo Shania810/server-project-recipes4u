@@ -18,6 +18,7 @@ const CommentSchema = new Schema({
         ref: "Recipe",
         required: true
     }
-});
+},
+    { timestamps: true });
 
 module.exports = model("Comment", CommentSchema);
