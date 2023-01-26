@@ -12,8 +12,8 @@ connectionDb();
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
-app.use('/', recipeRoutes);
 app.use('/', bestRecipesRoutes);
+app.use('/', recipeRoutes);
 app.use('/', commentRoutes);
 
 
