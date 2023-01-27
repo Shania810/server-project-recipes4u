@@ -3,7 +3,8 @@ const { Schema, model } = require("mongoose");
 const RecipeSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     category: {
         type: String,
@@ -12,13 +13,16 @@ const RecipeSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
-    preparation: [String],
-    ingredients: [String],
+    preparation: [{ type: String, lowercase: true, trim: true }],
+    ingredients: [{ type: String, lowercase: true, trim: true }],
     time: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true,
+        trim: true
     },
     level: {
         type: String,
@@ -34,7 +38,7 @@ const RecipeSchema = new Schema({
         type: String,
         required: true
     },
-    comments:[{
+    comments: [{
         type: Schema.Types.ObjectId,
         ref: "Comment",
         required: true
