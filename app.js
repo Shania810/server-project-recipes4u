@@ -6,10 +6,9 @@ const connectionDb = require('./db/db.config.js');
 const recipeRoutes = require('./Routes/recipes.routes.js');
 const bestRecipesRoutes = require('./Routes/bestRecipes.routes.js');
 const commentRoutes = require('./routes/comments.routes.js');
-const seedDb = require('./Seeds/recipes.js');
+
 
 connectionDb();
-seedDb()
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
