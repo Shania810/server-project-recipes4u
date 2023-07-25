@@ -8,7 +8,7 @@ const RecipeSchema = new Schema({
     },
     category: {
         type: String,
-        enum: ["prato principal", "massas", "acompanhamento", "drink", "sobremesa"],
+        enum: ["prato principal", "massas", "acompanhamento", "drinks", "sobremesa"],
         required: true
     },
     description: {
@@ -26,7 +26,7 @@ const RecipeSchema = new Schema({
     },
     level: {
         type: String,
-        enum: ["easy", "moderate", "hard"],
+        enum: ["😄 Fácil", "😅 Moderado", "😓 Difícil"],
         required: true
     },
     rate: {
@@ -40,8 +40,7 @@ const RecipeSchema = new Schema({
     },
     comments: [{
         type: Schema.Types.ObjectId,
-        ref: "Comment",
-        required: true
+        ref: "Comment"
     }]
 });
 
